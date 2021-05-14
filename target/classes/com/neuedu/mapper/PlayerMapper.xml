@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neuedu.mapper.PlayerMapper">
+  <resultMap id="BaseResultMap" type="com.neuedu.entity.Player">
+    <id column="player_id" jdbcType="INTEGER" property="playerId" />
+    <result column="player_name" jdbcType="VARCHAR" property="playerName" />
+    <result column="player_photo" jdbcType="VARCHAR" property="playerPhoto" />
+    <result column="team_name" jdbcType="VARCHAR" property="teamName" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="position" jdbcType="INTEGER" property="position" />
+    <result column="height" jdbcType="DOUBLE" property="height" />
+    <result column="weight" jdbcType="DOUBLE" property="weight" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="player_points" jdbcType="DOUBLE" property="playerPoints" />
+    <result column="player_rebounds" jdbcType="DOUBLE" property="playerRebounds" />
+    <result column="player_assists" jdbcType="DOUBLE" property="playerAssists" />
+    <result column="player_steals" jdbcType="DOUBLE" property="playerSteals" />
+    <result column="player_blocks" jdbcType="DOUBLE" property="playerBlocks" />
+    <result column="player_turnovers" jdbcType="DOUBLE" property="playerTurnovers" />
+    <result column="player_state" jdbcType="INTEGER" property="playerState" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    player_id, player_name, player_photo, team_name, number, position, height, weight, 
+    age, player_points, player_rebounds, player_assists, player_steals, player_blocks, 
+    player_turnovers, player_state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from player
+    where player_id = #{playerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from player
+    where player_id = #{playerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.neuedu.entity.Player">
+    insert into player (player_id, player_name, player_photo, 
+      team_name, number, position, 
+      height, weight, age, 
+      player_points, player_rebounds, player_assists, 
+      player_steals, player_blocks, player_turnovers, 
+      player_state)
+    values (#{playerId,jdbcType=INTEGER}, #{playerName,jdbcType=VARCHAR}, #{playerPhoto,jdbcType=VARCHAR}, 
+      #{teamName,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER}, #{position,jdbcType=INTEGER}, 
+      #{height,jdbcType=DOUBLE}, #{weight,jdbcType=DOUBLE}, #{age,jdbcType=INTEGER}, 
+      #{playerPoints,jdbcType=DOUBLE}, #{playerRebounds,jdbcType=DOUBLE}, #{playerAssists,jdbcType=DOUBLE}, 
+      #{playerSteals,jdbcType=DOUBLE}, #{playerBlocks,jdbcType=DOUBLE}, #{playerTurnovers,jdbcType=DOUBLE}, 
+      #{playerState,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.neuedu.entity.Player">
+    insert into player
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="playerId != null">
+        player_id,
+      </if>
+      <if test="playerName != null">
+        player_name,
+      </if>
+      <if test="playerPhoto != null">
+        player_photo,
+      </if>
+      <if test="teamName != null">
+        team_name,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="position != null">
+        position,
+      </if>
+      <if test="height != null">
+        height,
+      </if>
+      <if test="weight != null">
+        weight,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="playerPoints != null">
+        player_points,
+      </if>
+      <if test="playerRebounds != null">
+        player_rebounds,
+      </if>
+      <if test="playerAssists != null">
+        player_assists,
+      </if>
+      <if test="playerSteals != null">
+        player_steals,
+      </if>
+      <if test="playerBlocks != null">
+        player_blocks,
+      </if>
+      <if test="playerTurnovers != null">
+        player_turnovers,
+      </if>
+      <if test="playerState != null">
+        player_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="playerId != null">
+        #{playerId,jdbcType=INTEGER},
+      </if>
+      <if test="playerName != null">
+        #{playerName,jdbcType=VARCHAR},
+      </if>
+      <if test="playerPhoto != null">
+        #{playerPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="teamName != null">
+        #{teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=INTEGER},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=DOUBLE},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="playerPoints != null">
+        #{playerPoints,jdbcType=DOUBLE},
+      </if>
+      <if test="playerRebounds != null">
+        #{playerRebounds,jdbcType=DOUBLE},
+      </if>
+      <if test="playerAssists != null">
+        #{playerAssists,jdbcType=DOUBLE},
+      </if>
+      <if test="playerSteals != null">
+        #{playerSteals,jdbcType=DOUBLE},
+      </if>
+      <if test="playerBlocks != null">
+        #{playerBlocks,jdbcType=DOUBLE},
+      </if>
+      <if test="playerTurnovers != null">
+        #{playerTurnovers,jdbcType=DOUBLE},
+      </if>
+      <if test="playerState != null">
+        #{playerState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.neuedu.entity.Player">
+    update player
+    <set>
+      <if test="playerName != null">
+        player_name = #{playerName,jdbcType=VARCHAR},
+      </if>
+      <if test="playerPhoto != null">
+        player_photo = #{playerPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="teamName != null">
+        team_name = #{teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="position != null">
+        position = #{position,jdbcType=INTEGER},
+      </if>
+      <if test="height != null">
+        height = #{height,jdbcType=DOUBLE},
+      </if>
+      <if test="weight != null">
+        weight = #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="playerPoints != null">
+        player_points = #{playerPoints,jdbcType=DOUBLE},
+      </if>
+      <if test="playerRebounds != null">
+        player_rebounds = #{playerRebounds,jdbcType=DOUBLE},
+      </if>
+      <if test="playerAssists != null">
+        player_assists = #{playerAssists,jdbcType=DOUBLE},
+      </if>
+      <if test="playerSteals != null">
+        player_steals = #{playerSteals,jdbcType=DOUBLE},
+      </if>
+      <if test="playerBlocks != null">
+        player_blocks = #{playerBlocks,jdbcType=DOUBLE},
+      </if>
+      <if test="playerTurnovers != null">
+        player_turnovers = #{playerTurnovers,jdbcType=DOUBLE},
+      </if>
+      <if test="playerState != null">
+        player_state = #{playerState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where player_id = #{playerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.neuedu.entity.Player">
+    update player
+    set player_name = #{playerName,jdbcType=VARCHAR},
+      player_photo = #{playerPhoto,jdbcType=VARCHAR},
+      team_name = #{teamName,jdbcType=VARCHAR},
+      number = #{number,jdbcType=INTEGER},
+      position = #{position,jdbcType=INTEGER},
+      height = #{height,jdbcType=DOUBLE},
+      weight = #{weight,jdbcType=DOUBLE},
+      age = #{age,jdbcType=INTEGER},
+      player_points = #{playerPoints,jdbcType=DOUBLE},
+      player_rebounds = #{playerRebounds,jdbcType=DOUBLE},
+      player_assists = #{playerAssists,jdbcType=DOUBLE},
+      player_steals = #{playerSteals,jdbcType=DOUBLE},
+      player_blocks = #{playerBlocks,jdbcType=DOUBLE},
+      player_turnovers = #{playerTurnovers,jdbcType=DOUBLE},
+      player_state = #{playerState,jdbcType=INTEGER}
+    where player_id = #{playerId,jdbcType=INTEGER}
+  </update>
+
+
+  <!--查询现役球员-->
+  <select id="findActivePlayers" resultMap="BaseResultMap">
+    select * from player where player_state = "1"
+  </select>
+
+  <!--查询退役球员-->
+  <select id="findRetiredPlayers" resultMap="BaseResultMap">
+    select * from player where player_state = "0"
+  </select>
+
+
+  <!--得分排名前三-->
+  <select id="findPointsTop" resultMap="BaseResultMap">
+    select * from player where player_state = '1' order by player_points desc limit 0,3
+  </select>
+
+  <!--篮板排名前三-->
+  <select id="findReboundsTop" resultMap="BaseResultMap">
+    select * from player where player_state = '1' order by player_rebounds desc limit 0,3
+  </select>
+
+  <!--助攻排名前三-->
+  <select id="findAssistsTop" resultMap="BaseResultMap">
+    select * from player where player_state = '1' order by player_assists desc limit 0,3
+  </select>
+
+  <!--盖帽排名前三-->
+  <select id="findBlocksTop" resultMap="BaseResultMap">
+    select * from player where player_state = '1' order by player_blocks desc limit 0,3
+  </select>
+
+  <!--抢断排名前三-->
+  <select id="findStealsTop" resultMap="BaseResultMap">
+    select * from player where player_state = '1' order by player_steals desc limit 0,3
+  </select>
+
+  <!--失误排名前三-->
+  <select id="findTurnoversTop" resultMap="BaseResultMap">
+    select * from player where player_state = '1' order by player_turnovers desc limit 0,3
+  </select>
+
+
+
+</mapper>

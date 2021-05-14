@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neuedu.mapper.TeamMapper">
+  <resultMap id="BaseResultMap" type="com.neuedu.entity.Team">
+    <id column="team_id" jdbcType="INTEGER" property="teamId" />
+    <result column="team_name" jdbcType="VARCHAR" property="teamName" />
+    <result column="team_photo" jdbcType="VARCHAR" property="teamPhoto" />
+    <result column="win" jdbcType="INTEGER" property="win" />
+    <result column="lose" jdbcType="INTEGER" property="lose" />
+    <result column="shooting_percentage" jdbcType="DOUBLE" property="shootingPercentage" />
+    <result column="three_point_percentage" jdbcType="DOUBLE" property="threePointPercentage" />
+    <result column="free_throw_percentage" jdbcType="DOUBLE" property="freeThrowPercentage" />
+    <result column="team_points" jdbcType="DOUBLE" property="teamPoints" />
+    <result column="team_ rebounds" jdbcType="DOUBLE" property="teamRebounds" />
+    <result column="team_ assists" jdbcType="DOUBLE" property="teamAssists" />
+    <result column="team_ steals" jdbcType="DOUBLE" property="teamSteals" />
+    <result column="team_ blocks" jdbcType="DOUBLE" property="teamBlocks" />
+    <result column="team_ turnovers" jdbcType="DOUBLE" property="teamTurnovers" />
+    <result column="team_fouls" jdbcType="DOUBLE" property="teamFouls" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="difference_wins" jdbcType="DOUBLE" property="differenceWins" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    team_id, team_name, team_photo, win, lose, shooting_percentage, three_point_percentage, 
+    free_throw_percentage, team_points, "team_ rebounds", "team_ assists", "team_ steals", 
+    "team_ blocks", "team_ turnovers", team_fouls, area, difference_wins
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from team
+    where team_id = #{teamId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from team
+    where team_id = #{teamId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.neuedu.entity.Team">
+    insert into team (team_id, team_name, team_photo, 
+      win, lose, shooting_percentage, 
+      three_point_percentage, free_throw_percentage, 
+      team_points, "team_ rebounds", "team_ assists", 
+      "team_ steals", "team_ blocks", "team_ turnovers", 
+      team_fouls, area, difference_wins
+      )
+    values (#{teamId,jdbcType=INTEGER}, #{teamName,jdbcType=VARCHAR}, #{teamPhoto,jdbcType=VARCHAR}, 
+      #{win,jdbcType=INTEGER}, #{lose,jdbcType=INTEGER}, #{shootingPercentage,jdbcType=DOUBLE}, 
+      #{threePointPercentage,jdbcType=DOUBLE}, #{freeThrowPercentage,jdbcType=DOUBLE}, 
+      #{teamPoints,jdbcType=DOUBLE}, #{teamRebounds,jdbcType=DOUBLE}, #{teamAssists,jdbcType=DOUBLE}, 
+      #{teamSteals,jdbcType=DOUBLE}, #{teamBlocks,jdbcType=DOUBLE}, #{teamTurnovers,jdbcType=DOUBLE}, 
+      #{teamFouls,jdbcType=DOUBLE}, #{area,jdbcType=VARCHAR}, #{differenceWins,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.neuedu.entity.Team">
+    insert into team
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="teamId != null">
+        team_id,
+      </if>
+      <if test="teamName != null">
+        team_name,
+      </if>
+      <if test="teamPhoto != null">
+        team_photo,
+      </if>
+      <if test="win != null">
+        win,
+      </if>
+      <if test="lose != null">
+        lose,
+      </if>
+      <if test="shootingPercentage != null">
+        shooting_percentage,
+      </if>
+      <if test="threePointPercentage != null">
+        three_point_percentage,
+      </if>
+      <if test="freeThrowPercentage != null">
+        free_throw_percentage,
+      </if>
+      <if test="teamPoints != null">
+        team_points,
+      </if>
+      <if test="teamRebounds != null">
+        "team_ rebounds",
+      </if>
+      <if test="teamAssists != null">
+        "team_ assists",
+      </if>
+      <if test="teamSteals != null">
+        "team_ steals",
+      </if>
+      <if test="teamBlocks != null">
+        "team_ blocks",
+      </if>
+      <if test="teamTurnovers != null">
+        "team_ turnovers",
+      </if>
+      <if test="teamFouls != null">
+        team_fouls,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="differenceWins != null">
+        difference_wins,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="teamId != null">
+        #{teamId,jdbcType=INTEGER},
+      </if>
+      <if test="teamName != null">
+        #{teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="teamPhoto != null">
+        #{teamPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="win != null">
+        #{win,jdbcType=INTEGER},
+      </if>
+      <if test="lose != null">
+        #{lose,jdbcType=INTEGER},
+      </if>
+      <if test="shootingPercentage != null">
+        #{shootingPercentage,jdbcType=DOUBLE},
+      </if>
+      <if test="threePointPercentage != null">
+        #{threePointPercentage,jdbcType=DOUBLE},
+      </if>
+      <if test="freeThrowPercentage != null">
+        #{freeThrowPercentage,jdbcType=DOUBLE},
+      </if>
+      <if test="teamPoints != null">
+        #{teamPoints,jdbcType=DOUBLE},
+      </if>
+      <if test="teamRebounds != null">
+        #{teamRebounds,jdbcType=DOUBLE},
+      </if>
+      <if test="teamAssists != null">
+        #{teamAssists,jdbcType=DOUBLE},
+      </if>
+      <if test="teamSteals != null">
+        #{teamSteals,jdbcType=DOUBLE},
+      </if>
+      <if test="teamBlocks != null">
+        #{teamBlocks,jdbcType=DOUBLE},
+      </if>
+      <if test="teamTurnovers != null">
+        #{teamTurnovers,jdbcType=DOUBLE},
+      </if>
+      <if test="teamFouls != null">
+        #{teamFouls,jdbcType=DOUBLE},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="differenceWins != null">
+        #{differenceWins,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.neuedu.entity.Team">
+    update team
+    <set>
+      <if test="teamName != null">
+        team_name = #{teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="teamPhoto != null">
+        team_photo = #{teamPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="win != null">
+        win = #{win,jdbcType=INTEGER},
+      </if>
+      <if test="lose != null">
+        lose = #{lose,jdbcType=INTEGER},
+      </if>
+      <if test="shootingPercentage != null">
+        shooting_percentage = #{shootingPercentage,jdbcType=DOUBLE},
+      </if>
+      <if test="threePointPercentage != null">
+        three_point_percentage = #{threePointPercentage,jdbcType=DOUBLE},
+      </if>
+      <if test="freeThrowPercentage != null">
+        free_throw_percentage = #{freeThrowPercentage,jdbcType=DOUBLE},
+      </if>
+      <if test="teamPoints != null">
+        team_points = #{teamPoints,jdbcType=DOUBLE},
+      </if>
+      <if test="teamRebounds != null">
+        "team_ rebounds" = #{teamRebounds,jdbcType=DOUBLE},
+      </if>
+      <if test="teamAssists != null">
+        "team_ assists" = #{teamAssists,jdbcType=DOUBLE},
+      </if>
+      <if test="teamSteals != null">
+        "team_ steals" = #{teamSteals,jdbcType=DOUBLE},
+      </if>
+      <if test="teamBlocks != null">
+        "team_ blocks" = #{teamBlocks,jdbcType=DOUBLE},
+      </if>
+      <if test="teamTurnovers != null">
+        "team_ turnovers" = #{teamTurnovers,jdbcType=DOUBLE},
+      </if>
+      <if test="teamFouls != null">
+        team_fouls = #{teamFouls,jdbcType=DOUBLE},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="differenceWins != null">
+        difference_wins = #{differenceWins,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where team_id = #{teamId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.neuedu.entity.Team">
+    update team
+    set team_name = #{teamName,jdbcType=VARCHAR},
+      team_photo = #{teamPhoto,jdbcType=VARCHAR},
+      win = #{win,jdbcType=INTEGER},
+      lose = #{lose,jdbcType=INTEGER},
+      shooting_percentage = #{shootingPercentage,jdbcType=DOUBLE},
+      three_point_percentage = #{threePointPercentage,jdbcType=DOUBLE},
+      free_throw_percentage = #{freeThrowPercentage,jdbcType=DOUBLE},
+      team_points = #{teamPoints,jdbcType=DOUBLE},
+      "team_ rebounds" = #{teamRebounds,jdbcType=DOUBLE},
+      "team_ assists" = #{teamAssists,jdbcType=DOUBLE},
+      "team_ steals" = #{teamSteals,jdbcType=DOUBLE},
+      "team_ blocks" = #{teamBlocks,jdbcType=DOUBLE},
+      "team_ turnovers" = #{teamTurnovers,jdbcType=DOUBLE},
+      team_fouls = #{teamFouls,jdbcType=DOUBLE},
+      area = #{area,jdbcType=VARCHAR},
+      difference_wins = #{differenceWins,jdbcType=DOUBLE}
+    where team_id = #{teamId,jdbcType=INTEGER}
+  </update>
+
+  <!--查询东部排名前8的球队-->
+<select id="findEastTopEight" resultMap="BaseResultMap">
+  select team_id , team_name , win, lose, difference_wins from team WHERE area = 'east' ORDER BY difference_wins limit 0,8
+</select>
+
+
+  <!--查询西部排名前8的球队-->
+  <select id="findWestTopEight" resultMap="BaseResultMap">
+  select * from team WHERE area = 'west' ORDER BY difference_wins limit 0,8
+</select>
+
+</mapper>
